@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import { useTodo } from "../hooks/useTodo";
 
 /**
@@ -39,8 +40,17 @@ const TodoList = ({ todoList }) => {
     );
 }
 
+
 function App() {
-    const { todoList } = useTodo();
+    const { todoList, addTodoListItem } = useTodo();
+    /** TODO入力フォーム */
+    const inputEl = useRef(null);
+    /** TODO追加 */
+    const handleAddTodoListItem = () => {
+        if (inputEl.current.value === "") return;
+        addTodoListItem(inputEl.current.value);
+        inputEl.current.value = "";
+    }
 
     /** 未完了 */
     const inCompletedList = todoList.filter((todo) => {
@@ -58,8 +68,8 @@ function App() {
     return (
         <>
             <TodoTitle title="進捗管理" as="h1" />
-            <textarea />
-            <button>+ TODO追加</button>
+            <textarea ref={inputEl} />
+            <button onClick={handleAddTodoListItem}>+ TODO追加</button>
             <TodoTitle title="未完了TODOリスト" as="h2" />
             <TodoList todoList={inCompletedList} />
 
