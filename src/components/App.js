@@ -1,4 +1,7 @@
 import React, { useRef } from "react";
+// スタイル
+import { Container } from "@chakra-ui/react";
+import { AddIcon } from "@chakra-ui/icons";
 // カスタムフック
 import { useTodo } from "../hooks/useTodo";
 // コンポーネント
@@ -34,10 +37,16 @@ function App() {
     })
 
     return (
-        <>
-            <TodoTitle title="進捗管理" as="h1" />
+        <Container centerContent p={{ base: "4", md: "6" }} maxWidth="3xl">
+            <TodoTitle
+                title="進捗管理"
+                as="h1"
+                fontSize={{ base: "2xl", md: "3xl" }}
+            />
             <TodoAdd
-                buttonText="+ TODOを追加"
+                placeholder="ADD TODO"
+                leftIcon={<AddIcon />}
+                buttonText="TODOを追加"
                 inputEl={inputEl}
                 handleAddTodoListItem={handleAddTodoListItem}
             />
@@ -47,6 +56,7 @@ function App() {
                 deleteTodoListItem={deleteTodoListItem}
                 title="未完了TODOリスト"
                 as="h2"
+                fontSize={{ base: "xl", md: "2xl" }}
             />
             <TodoList
                 todoList={completedList}
@@ -54,8 +64,9 @@ function App() {
                 deleteTodoListItem={deleteTodoListItem}
                 title="完了TODOリスト"
                 as="h2"
+                fontSize={{ base: "xl", md: "2xl" }}
             />
-        </>
+        </Container>
     );
 }
 

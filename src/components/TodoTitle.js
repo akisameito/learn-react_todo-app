@@ -1,13 +1,13 @@
 import React, { memo } from "react";
+import { Heading } from "@chakra-ui/react";
+
 /**
  * titleコンポーネント
  */
-export const TodoTitle = memo(({ title, as }) => {
-    if (as === "h1") {
-        return <h1>{title}</h1>;
-    } else if (as === "h2") {
-        return <h2>{title}</h2>;
-    } else {
-        return <p>{title}</p>;
-    }
+export const TodoTitle = memo(({ title, as, fontSize, mt }) => {
+    return (
+        <Heading mt={mt} as ={as} fontSize={fontSize} w="full">
+            {title}
+        </Heading>
+    )
 });
